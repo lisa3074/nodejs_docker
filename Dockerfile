@@ -12,10 +12,18 @@ WORKDIR /app
 COPY package.json .
 #Run the app
 RUN npm install
+#Should we npm install
+ ARG NODE_ENV
+ RUN if [ "$NODE_ENV" = "development" ]; \
+    then npm install; \
+    else npm install --only=production; \
+    fi
 #Copy current directory to the /app
 COPY . ./
-#Expose port 3000
-EXPOSE 8000
+#Environment port
+ENV PORT 8000
+#Expose port 8000
+EXPOSE $PORT
 #Entrypoint at runtime (use node and run index.js)
-CMD ["npm", "run", "dev"]
-
+CMD ["node", "index.js"]
+                        
