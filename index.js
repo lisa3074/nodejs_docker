@@ -24,11 +24,13 @@ const connectWithRetry = () => {
 
 connectWithRetry();
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("<h2>Hell yeah!! Wuhuuu</h2>");
 });
 
-app.use("/posts", postRouter);
+app.use("/api/v1/posts", postRouter);
 
 //This points to the express port that has been set (PORT), if it hasn't been set, fall back to the default port we specified as 3000
 const port = process.env.PORT || 8000;
