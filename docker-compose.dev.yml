@@ -11,4 +11,10 @@ services:
       - /app/node_modules
     environment:
       - NODE_ENV=development
+      - MONGO_USER=lisab
+      - MONGO_PASSWORD=SecretLisab
     command: npm run dev
+  mongo:
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=lisab
+      - MONGO_INITDB_ROOT_PASSWORD=SecretLisab
